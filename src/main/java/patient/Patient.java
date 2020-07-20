@@ -42,19 +42,12 @@ public class Patient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(patientId, patient.patientId) &&
-            firstName.equals(patient.firstName) &&
-            lastName.equals(patient.lastName) &&
-            Objects.equals(email, patient.email) &&
-            Objects.equals(phone, patient.phone) &&
-            streetName.equals(patient.streetName) &&
-            city.equals(patient.city) &&
-            country.equals(patient.country);
+        return patientId != null && patientId.equals(patient.getPatientId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(patientId, firstName, lastName, email, phone, streetName, city, country);
+        return patientId != null ? patientId.hashCode() : 0;
     }
 
     @Override
@@ -71,4 +64,67 @@ public class Patient {
             '}';
     }
 
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }
