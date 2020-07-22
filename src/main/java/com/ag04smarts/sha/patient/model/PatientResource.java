@@ -1,60 +1,59 @@
-package patient;
+package com.ag04smarts.sha.patient.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-import java.util.Objects;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
-@Table(name = "patients")
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Patient {
+public class PatientResource {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long patientId;
-    @Column(nullable = false)
+    @NotBlank
     private String firstName;
-    @Column(nullable = false)
+    @NotBlank
     private String lastName;
-    @Column
+    @NotBlank
+    @Email
     private String email;
-    @Column
     private String phone;
-    @Column(nullable = false)
+    @NotBlank
     private String streetName;
-    @Column(nullable = false)
+    @NotBlank
     private String city;
-    @Column(nullable = false)
+    @NotBlank
     private String country;
 
-    public Patient() {
+    public PatientResource() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Patient patient = (Patient) o;
-        return patientId != null && patientId.equals(patient.getPatientId());
+    public Patient toPatientEntity() {
+        Patient patient = new Patient();
+        patient.setFirstName(this.firstName);
+        patient.setLastName(this.lastName);
+        patient.setEmail(this.email);
+        patient.setPhone(this.phone);
+        patient.setStreetName(this.streetName);
+        patient.setCity(this.city);
+        patient.setCountry(this.country);
+        return patient;
     }
 
-    @Override
-    public int hashCode() {
-        return patientId != null ? patientId.hashCode() : 0;
+    public PatientResource(@NotBlank String firstName, @NotBlank String lastName, @NotBlank @Email String email, String phone, @NotBlank String streetName, @NotBlank String city, @NotBlank String country) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.streetName = streetName;
+        this.city = city;
+        this.country = country;
     }
 
     @Override
     public String toString() {
-        return "Patient{" +
-            "patientId=" + patientId +
-            ", firstName='" + firstName + '\'' +
+        return "PatientResource{" +
+            "firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
             ", phone='" + phone + '\'' +
