@@ -1,5 +1,7 @@
 package com.ag04smarts.sha.patient;
 
+import javax.validation.Valid;
+
 import com.ag04smarts.sha.patient.model.Patient;
 import com.ag04smarts.sha.patient.model.PatientResource;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,7 +38,7 @@ public class PatientController {
 
     @PostMapping
     public HttpEntity<?> createPatient(
-        @RequestBody PatientResource resource
+        @RequestBody @Valid PatientResource resource
     ) {
         Patient created = patientService.insert(resource);
         return ResponseEntity.ok(created);
@@ -45,7 +47,7 @@ public class PatientController {
     @PutMapping("/{id}")
     public HttpEntity<?> updatePatient(
         @PathVariable("id") long id,
-        @RequestBody PatientResource resource
+        @RequestBody @Valid PatientResource resource
     ) {
         resource.setPatientId(id);
         Patient updated = patientService.update(resource);
