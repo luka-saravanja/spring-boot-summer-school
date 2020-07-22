@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import utils.MappingConstants;
+import com.ag04smarts.sha.utils.MappingConstants;
 
 @RestController
 @RequestMapping(value = MappingConstants.PATIENT)

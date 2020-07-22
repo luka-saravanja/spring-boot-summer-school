@@ -1,4 +1,4 @@
-package utils;
+package com.ag04smarts.sha.utils;
 
 public final class MappingConstants {
     public static final String API = "/api";

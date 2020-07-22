@@ -1,4 +1,4 @@
-package utils;
+package com.ag04smarts.sha.utils;
 
 import java.util.List;
 

@@ -8,7 +8,7 @@ import com.ag04smarts.sha.patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import utils.PatientDummyData;
+import com.ag04smarts.sha.utils.PatientDummyData;
 
 
 @SpringBootApplication
