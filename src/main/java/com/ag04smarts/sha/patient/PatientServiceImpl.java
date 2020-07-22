@@ -45,7 +45,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient update(PatientResource resource) {
-        if (patientRepository.findByEmail(resource.getEmail()).filter(p -> p.getPatientId().equals(resource.getPatientId())).isPresent()) {
+        if (patientRepository.findByEmail(resource.getEmail()).filter(p -> !p.getPatientId().equals(resource.getPatientId())).isPresent()) {
             throw new InvalidPropertyException(PatientResource.class, "email", "Email already in use");
         }
         Patient persisted = findById(resource.getPatientId());
