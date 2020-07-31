@@ -2,7 +2,7 @@ package com.ag04smarts.sha.utils;
 
 import java.util.List;
 
-import com.ag04smarts.sha.patient.model.PatientResource;
+import com.ag04smarts.sha.request.PatientResource;
 
 import static java.util.Arrays.asList;
 

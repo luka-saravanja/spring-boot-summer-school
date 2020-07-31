@@ -1,7 +1,10 @@
-package com.ag04smarts.sha.patient;
+package com.ag04smarts.sha.service;
 
-import com.ag04smarts.sha.patient.model.Patient;
-import com.ag04smarts.sha.patient.model.PatientResource;
+import java.util.List;
+
+import com.ag04smarts.sha.model.Patient;
+import com.ag04smarts.sha.model.Therapy;
+import com.ag04smarts.sha.request.PatientResource;
 
 public interface PatientService {
 
@@ -35,4 +38,15 @@ public interface PatientService {
      * @param id identifier of the patient that will be deleted
      */
     void delete(long id);
+
+    /**
+     * Method for adding new disease to patient
+     *
+     * @param diseaseName name of disease to add to Patient
+     * @param patientId   identifier of Patient
+     * @return Patient with new Disease
+     */
+    Patient addDisease(String diseaseName, Long patientId);
+
+    List<Therapy> findPatientTherapies(long patientId);
 }

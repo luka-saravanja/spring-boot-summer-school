@@ -4,7 +4,7 @@ package com.ag04smarts.sha;
 import javax.annotation.PostConstruct;
 
 import com.ag04smarts.sha.datasource.Datasource;
-import com.ag04smarts.sha.patient.PatientService;
+import com.ag04smarts.sha.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

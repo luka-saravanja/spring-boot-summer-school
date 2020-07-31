@@ -1,9 +1,10 @@
-package com.ag04smarts.sha.patient.model;
+package com.ag04smarts.sha.request;
 
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.ag04smarts.sha.model.Patient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class PatientResource {

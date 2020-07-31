@@ -1,9 +1,13 @@
-package com.ag04smarts.sha.patient;
+package com.ag04smarts.sha.controller;
 
 import javax.validation.Valid;
 
-import com.ag04smarts.sha.patient.model.Patient;
-import com.ag04smarts.sha.patient.model.PatientResource;
+import java.util.List;
+
+import com.ag04smarts.sha.model.Patient;
+import com.ag04smarts.sha.model.Therapy;
+import com.ag04smarts.sha.service.PatientService;
+import com.ag04smarts.sha.request.PatientResource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.ag04smarts.sha.utils.MappingConstants;
 
@@ -60,6 +65,23 @@ public class PatientController {
     ) {
         patientService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}/add-disease")
+    public HttpEntity<?> addDiseaseToPatient(
+        @PathVariable("id") long id,
+        @RequestParam String diseaseName
+    ) {
+        Patient updated = patientService.addDisease(diseaseName, id);
+        return ResponseEntity.ok(updated);
+    }
+
+    @GetMapping("/{id}/therapies")
+    public HttpEntity<?> getPatientTherapies(
+        @PathVariable("id") long id
+    ) {
+        List<Therapy> patientTherapies = patientService.findPatientTherapies(id);
+        return ResponseEntity.ok(patientTherapies);
     }
 
 
