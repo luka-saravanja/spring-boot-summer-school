@@ -42,7 +42,6 @@ public class Patient {
     private String country;
     @OneToMany(mappedBy = "patient")
     private Set<Therapy> therapies;
-
     @ManyToMany
     @JoinTable(
         name = "patient_disease",
@@ -56,7 +55,6 @@ public class Patient {
     public void addDisease(Disease disease) {
         if (diseases == null) {
             diseases = new HashSet<Disease>();
-            diseases.add(disease);
         }
         diseases.add(disease);
     }
@@ -64,7 +62,6 @@ public class Patient {
     public void addTherapy(Therapy therapy) {
         if (therapies == null) {
             therapies = new HashSet<Therapy>();
-            therapies.add(therapy);
         }
         therapies.add(therapy);
     }

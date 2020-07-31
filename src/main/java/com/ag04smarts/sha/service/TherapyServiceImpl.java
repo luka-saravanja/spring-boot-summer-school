@@ -15,9 +15,6 @@ public class TherapyServiceImpl implements TherapyService {
     private final TherapyRepository therapyRepository;
     private final PatientRepository patientRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     public TherapyServiceImpl(TherapyRepository therapyRepository, PatientRepository patientRepository) {
         this.therapyRepository = therapyRepository;
         this.patientRepository = patientRepository;

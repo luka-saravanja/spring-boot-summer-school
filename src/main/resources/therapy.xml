@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="therapyService"
+    <bean id="therapies"
           class="com.ag04smarts.sha.service.TherapyServiceImpl">
         <constructor-arg ref="therapyRepository"/>
         <constructor-arg ref="patientRepository"/>

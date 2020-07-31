@@ -10,12 +10,10 @@ import com.ag04smarts.sha.request.DiseaseResource;
 import org.springframework.beans.InvalidPropertyException;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service(value = "diseases")
 public class DiseaseServiceImpl implements DiseaseService {
 
     private final DiseaseRepository diseaseRepository;
-    @PersistenceContext
-    private EntityManager entityManager;
 
     public DiseaseServiceImpl(DiseaseRepository diseaseRepository) {
         this.diseaseRepository = diseaseRepository;

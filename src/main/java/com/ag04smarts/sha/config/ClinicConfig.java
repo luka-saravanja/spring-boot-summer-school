@@ -1,6 +1,5 @@
 package com.ag04smarts.sha.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ClinicConfig {
 
-    @Autowired
     private ClinicName clinicName;
 
     @Bean

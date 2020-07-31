@@ -29,17 +29,13 @@ public class TherapyController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> therapyById(
-        @PathVariable("id") long id
-    ) {
+    public ResponseEntity<?> therapyById(@PathVariable("id") long id) {
         Therapy therapy = therapyService.findById(id);
         return ResponseEntity.ok(therapy);
     }
 
     @PostMapping
-    public HttpEntity<?> createTherapy(
-        @RequestBody @Valid TherapyResource resource
-    ) {
+    public HttpEntity<?> createTherapy(@RequestBody @Valid TherapyResource resource) {
         Therapy created = therapyService.insert(resource);
         return ResponseEntity.ok(created);
     }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @PropertySource("classpath:sha.properties")
 public class DummyClinicWebData {
 
+    @Value("${clinic.web.url}")
     private String clinicWebUrl;
     private String clinicFacebook;
     @Value("${clinic.url.linkedin}")
@@ -16,11 +17,16 @@ public class DummyClinicWebData {
     @Value("${clinic.url.twitter}")
     private String clinicTwitter;
 
+    public DummyClinicWebData() {
+        System.out.println(this.clinicWebUrl);
+    }
 
     @Override
     public String toString() {
-        return "DummyClinicSocialNetworks{" +
-            "clinicLinkedIn='" + clinicLinkedIn + '\'' +
+        return "DummyClinicWebData{" +
+            "clinicWebUrl='" + clinicWebUrl + '\'' +
+            ", clinicFacebook='" + clinicFacebook + '\'' +
+            ", clinicLinkedIn='" + clinicLinkedIn + '\'' +
             ", clinicTwitter='" + clinicTwitter + '\'' +
             '}';
     }
