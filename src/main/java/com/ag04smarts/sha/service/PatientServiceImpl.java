@@ -1,32 +1,36 @@
-package com.ag04smarts.sha.patient;
+package com.ag04smarts.sha.service;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 
-import com.ag04smarts.sha.patient.model.Patient;
-import com.ag04smarts.sha.patient.model.PatientResource;
+import java.util.List;
+
+import com.ag04smarts.sha.model.Disease;
+import com.ag04smarts.sha.model.Patient;
+import com.ag04smarts.sha.model.Therapy;
+import com.ag04smarts.sha.repository.DiseaseRepository;
+import com.ag04smarts.sha.repository.PatientRepository;
+import com.ag04smarts.sha.repository.TherapyRepository;
+import com.ag04smarts.sha.request.PatientResource;
 import org.springframework.beans.InvalidPropertyException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service
+@Primary
 @Qualifier("patientService")
 public class PatientServiceImpl implements PatientService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private final PatientRepository patientRepository;
+    private final DiseaseRepository diseaseRepository;
+    private final TherapyRepository therapyRepository;
 
-    @Autowired
-    private ApplicationContext applicationContext;
-    private PatientRepository patientRepository;
-
-    @PostConstruct
-    private void init() {
-        patientRepository = applicationContext.getBean(PatientRepository.class);
+    public PatientServiceImpl(PatientRepository patientRepository, DiseaseRepository diseaseRepository, TherapyRepository therapyRepository) {
+        this.patientRepository = patientRepository;
+        this.diseaseRepository = diseaseRepository;
+        this.therapyRepository = therapyRepository;
     }
 
     @Override
@@ -57,5 +61,19 @@ public class PatientServiceImpl implements PatientService {
     public void delete(long id) {
         Patient toDelete = findById(id);
         patientRepository.delete(toDelete);
+    }
+
+    @Override
+    public Patient addDisease(String diseaseName, Long patientId) {
+        Patient patient = findById(patientId);
+        Disease disease = diseaseRepository.findByName(diseaseName).orElseThrow(EntityNotFoundException::new);
+        patient.addDisease(disease);
+        return patientRepository.save(patient);
+    }
+
+    @Override
+    public List<Therapy> findPatientTherapies(long patientId) {
+        Patient patient = findById(patientId);
+        return therapyRepository.findByPatient(patient);
     }
 }

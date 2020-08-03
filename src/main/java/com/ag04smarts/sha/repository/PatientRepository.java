@@ -1,8 +1,8 @@
-package com.ag04smarts.sha.patient;
+package com.ag04smarts.sha.repository;
 
 import java.util.Optional;
 
-import com.ag04smarts.sha.patient.model.Patient;
+import com.ag04smarts.sha.model.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
