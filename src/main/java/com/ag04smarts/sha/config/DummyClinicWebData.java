@@ -31,7 +31,6 @@ public class DummyClinicWebData {
             '}';
     }
 
-
     public String getClinicLinkedIn() {
         return clinicLinkedIn;
     }
@@ -62,5 +61,10 @@ public class DummyClinicWebData {
 
     public void setClinicFacebook(String clinicFacebook) {
         this.clinicFacebook = clinicFacebook;
+    }
+
+    @Value("${clinic.web.url}")
+    public void printValue(String clinicWebUrl) {
+        System.out.println(clinicWebUrl);
     }
 }

@@ -30,4 +30,10 @@ public class DummyClinicController {
     ) {
         return ResponseEntity.ok(dummyClinicWebDataService.getClinicName());
     }
+
+    @GetMapping("/instagram")
+    public ResponseEntity<?> getClinicInstagram(
+    ) {
+        return ResponseEntity.ok(dummyClinicWebDataService.getClinicInstagram());
+    }
 }

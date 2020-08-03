@@ -6,18 +6,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class DummyClinicService {
 
-
     private String clinicFacebook;
+    private String clinicInstagram;
     private DummyClinicWebData dummyClinicWebData;
     private ClinicName clinicName;
 
     public DummyClinicService(
-                              @Value("${clinic.url.facebook}") String clinicFacebook,
-                              DummyClinicWebData dummyClinicWebData,
-                              ClinicName clinicName) {
+        @Value("${clinic.url.facebook}") String clinicFacebook,
+        @Value("${clinic.url.instagram}") String clinicInstagram,
+        DummyClinicWebData dummyClinicWebData,
+        ClinicName clinicName) {
         this.clinicFacebook = clinicFacebook;
         this.dummyClinicWebData = dummyClinicWebData;
         this.clinicName = clinicName;
+        this.clinicInstagram = clinicInstagram;
     }
 
 
@@ -28,5 +30,9 @@ public class DummyClinicService {
 
     public String getClinicName() {
         return clinicName.getClinicName();
+    }
+
+    public String getClinicInstagram() {
+        return this.clinicInstagram;
     }
 }
