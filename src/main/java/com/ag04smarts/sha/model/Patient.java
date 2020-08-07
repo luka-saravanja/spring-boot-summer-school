@@ -23,11 +23,19 @@ import java.util.Set;
 import com.ag04smarts.sha.model.enums.Gender;
 import com.ag04smarts.sha.model.enums.Status;
 import com.ag04smarts.sha.request.PatientResource;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@Data
+
+@Builder(toBuilder = true)
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Table(name = "patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Patient {
@@ -57,6 +65,7 @@ public class Patient {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private Set<Appointment> appointments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    @JsonIgnore
     private Set<PatientTreatmentHistory> patientTreatmentHistories;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_medical_record_id", referencedColumnName = "patientMedicalRecordId")
@@ -71,6 +80,16 @@ public class Patient {
     @PreUpdate
     private void lastUpdated() {
         this.lastUpdated = LocalDateTime.now();
+    }
+
+    public void updateFromResource(PatientResource resource) {
+        this.firstName = resource.getFirstName();
+        this.lastName = resource.getLastName();
+        this.email = resource.getEmail();
+        this.age = resource.getAge();
+        this.phoneNumber = resource.getPhone();
+        this.status = resource.getStatus();
+        this.gender = resource.getGender();
     }
 
 }

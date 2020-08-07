@@ -3,6 +3,7 @@ package com.ag04smarts.sha.controller;
 import javax.validation.Valid;
 
 
+import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.service.PatientService;
@@ -63,6 +64,20 @@ public class PatientController {
     ) {
         patientService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/older")
+    public ResponseEntity<?> patientsOlderThan21AndEnlistedAfterDate(
+    ) {
+        List<Patient> patients = patientService.getAllPatientsOlderThan21AndEnlistedAfterDate();
+        return ResponseEntity.ok(patients);
+    }
+
+    @GetMapping("/symptoms")
+    public ResponseEntity<?> patientsWithFeverOrCoughing(
+    ) {
+        List<Patient> patients = patientService.getAllPatientsWithFeverOrCoughingSymptoms();
+        return ResponseEntity.ok(patients);
     }
 
 }

@@ -6,7 +6,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.ag04smarts.sha.model.enums.Gender;
-import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,32 +21,12 @@ public class PatientResource {
     @Email
     private String email;
     private String phone;
+    private Integer age;
     @NotNull
     private Gender gender;
     @NotNull
     private Status status;
 
-
-    public PatientResource() {
-    }
-
-    public Patient toPatientEntity() {
-        Patient patient = new Patient();
-//        patient.setFirstName(this.firstName);
-//        patient.setLastName(this.lastName);
-//        patient.setEmail(this.email);
-//        patient.setPhoneNumber(this.phone);
-//        patient.setStatus(this.status);
-//        patient.setGender(this.gender);
-        return patient;
-    }
-
-    public PatientResource(@NotBlank String firstName, @NotBlank String lastName, @NotBlank @Email String email, String phone, @NotBlank String streetName, @NotBlank String city, @NotBlank String country) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-    }
 
     public Long getPatientId() {
         return patientId;
@@ -89,5 +68,27 @@ public class PatientResource {
         this.phone = phone;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
 
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }

@@ -1,6 +1,8 @@
 package com.ag04smarts.sha.service;
 
 
+import java.util.List;
+
 import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.request.PatientResource;
 
@@ -36,4 +38,8 @@ public interface PatientService {
      * @param id identifier of the patient that will be deleted
      */
     void delete(long id);
+
+    List<Patient> getAllPatientsOlderThan21AndEnlistedAfterDate();
+
+    List<Patient> getAllPatientsWithFeverOrCoughingSymptoms();
 }

@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -26,6 +27,7 @@ public class PatientMedicalRecord {
     private String treatment;
 
     @OneToOne(mappedBy = "patientMedicalRecord")
+    @JsonIgnore
     private Patient patient;
 
 
