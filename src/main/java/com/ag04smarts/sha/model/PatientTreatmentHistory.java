@@ -14,7 +14,9 @@ import javax.persistence.Table;
 
 import com.ag04smarts.sha.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "patient_treatment_history")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

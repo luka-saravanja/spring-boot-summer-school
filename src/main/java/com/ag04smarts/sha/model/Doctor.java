@@ -16,7 +16,9 @@ import java.util.Set;
 
 import com.ag04smarts.sha.model.enums.DoctorExpertise;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "doctor")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

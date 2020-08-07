@@ -12,7 +12,9 @@ import javax.persistence.Table;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "appointment")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

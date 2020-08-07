@@ -10,7 +10,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import lombok.Data;
 
+
+@Data
 @Entity
 @Table(name = "medical_record_symptoms")
 public class MedicalRecordSymptom {
@@ -22,10 +25,10 @@ public class MedicalRecordSymptom {
     @ManyToOne
     @MapsId("patientMedicalRecordId")
     @JoinColumn(name = "patient_medical_record_id", referencedColumnName = "patientMedicalRecordId")
-    PatientMedicalRecord record;
+    private PatientMedicalRecord record;
     @ManyToOne
     @MapsId("symptomId")
     @JoinColumn(name = "symptom_id", referencedColumnName = "symptomId")
-    Symptom symptom;
+    private Symptom symptom;
 
 }

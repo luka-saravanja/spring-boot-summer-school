@@ -9,7 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "symptom")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

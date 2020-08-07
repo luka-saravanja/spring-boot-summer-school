@@ -20,7 +20,9 @@ import com.ag04smarts.sha.model.enums.Gender;
 import com.ag04smarts.sha.model.enums.Status;
 import com.ag04smarts.sha.request.PatientResource;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
