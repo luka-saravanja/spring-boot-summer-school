@@ -11,8 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -47,6 +51,9 @@ public class Patient {
     @Column(nullable = false)
     private Status status;
 
+    private LocalDateTime createdAt;
+    private LocalDateTime lastUpdated;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private Set<Appointment> appointments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
@@ -56,11 +63,14 @@ public class Patient {
     private PatientMedicalRecord patientMedicalRecord;
 
 
-    public void updateFromResource(PatientResource resource) {
-        this.firstName = resource.getFirstName();
-        this.lastName = resource.getLastName();
-        this.email = resource.getEmail();
-        this.phoneNumber = resource.getPhone();
+    @PrePersist
+    private void createdAt() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    private void lastUpdated() {
+        this.lastUpdated = LocalDateTime.now();
     }
 
 }

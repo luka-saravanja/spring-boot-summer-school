@@ -38,7 +38,6 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public Patient update(PatientResource resource) {
         Patient persisted = findById(resource.getPatientId());
-        persisted.updateFromResource(resource);
         return patientRepository.save(persisted);
     }
 
