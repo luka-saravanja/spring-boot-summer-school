@@ -2,12 +2,13 @@ package com.ag04smarts.sha.controller;
 
 import javax.validation.Valid;
 
-import java.util.List;
+
 
 import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.service.PatientService;
 import com.ag04smarts.sha.request.PatientResource;
-import org.springframework.beans.factory.annotation.Qualifier;
+
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.ag04smarts.sha.utils.MappingConstants;
 
@@ -27,8 +27,7 @@ public class PatientController {
 
     private final PatientService patientService;
 
-    public PatientController(
-        @Qualifier("patientService") PatientService patientService) {
+    public PatientController(PatientService patientService) {
         this.patientService = patientService;
     }
 

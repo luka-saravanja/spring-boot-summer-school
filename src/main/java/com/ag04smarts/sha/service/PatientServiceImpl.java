@@ -2,19 +2,14 @@ package com.ag04smarts.sha.service;
 
 import javax.persistence.EntityNotFoundException;
 
-import java.util.List;
-
 import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.repository.PatientRepository;
 import com.ag04smarts.sha.request.PatientResource;
-import org.springframework.beans.InvalidPropertyException;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Primary;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
-@Primary
-@Qualifier("patientService")
 public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
