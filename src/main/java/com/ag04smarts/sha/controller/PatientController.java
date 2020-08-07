@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
-import com.ag04smarts.sha.model.Therapy;
 import com.ag04smarts.sha.service.PatientService;
 import com.ag04smarts.sha.request.PatientResource;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -66,23 +65,5 @@ public class PatientController {
         patientService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
-    @PutMapping("/{id}/add-disease")
-    public HttpEntity<?> addDiseaseToPatient(
-        @PathVariable("id") long id,
-        @RequestParam String diseaseName
-    ) {
-        Patient updated = patientService.addDisease(diseaseName, id);
-        return ResponseEntity.ok(updated);
-    }
-
-    @GetMapping("/{id}/therapies")
-    public HttpEntity<?> getPatientTherapies(
-        @PathVariable("id") long id
-    ) {
-        List<Therapy> patientTherapies = patientService.findPatientTherapies(id);
-        return ResponseEntity.ok(patientTherapies);
-    }
-
 
 }

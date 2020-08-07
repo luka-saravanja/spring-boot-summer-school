@@ -3,8 +3,11 @@ package com.ag04smarts.sha.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import com.ag04smarts.sha.model.enums.Gender;
 import com.ag04smarts.sha.model.Patient;
+import com.ag04smarts.sha.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class PatientResource {
@@ -19,25 +22,23 @@ public class PatientResource {
     @Email
     private String email;
     private String phone;
-    @NotBlank
-    private String streetName;
-    @NotBlank
-    private String city;
-    @NotBlank
-    private String country;
+    @NotNull
+    private Gender gender;
+    @NotNull
+    private Status status;
+
 
     public PatientResource() {
     }
 
     public Patient toPatientEntity() {
         Patient patient = new Patient();
-        patient.setFirstName(this.firstName);
-        patient.setLastName(this.lastName);
-        patient.setEmail(this.email);
-        patient.setPhone(this.phone);
-        patient.setStreetName(this.streetName);
-        patient.setCity(this.city);
-        patient.setCountry(this.country);
+//        patient.setFirstName(this.firstName);
+//        patient.setLastName(this.lastName);
+//        patient.setEmail(this.email);
+//        patient.setPhoneNumber(this.phone);
+//        patient.setStatus(this.status);
+//        patient.setGender(this.gender);
         return patient;
     }
 
@@ -46,22 +47,6 @@ public class PatientResource {
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.streetName = streetName;
-        this.city = city;
-        this.country = country;
-    }
-
-    @Override
-    public String toString() {
-        return "PatientResource{" +
-            "firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", phone='" + phone + '\'' +
-            ", streetName='" + streetName + '\'' +
-            ", city='" + city + '\'' +
-            ", country='" + country + '\'' +
-            '}';
     }
 
     public Long getPatientId() {
@@ -104,27 +89,5 @@ public class PatientResource {
         this.phone = phone;
     }
 
-    public String getStreetName() {
-        return streetName;
-    }
 
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
 }
