@@ -1,9 +1,9 @@
 package com.ag04smarts.sha.service;
 
+
 import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
-import com.ag04smarts.sha.model.Therapy;
 import com.ag04smarts.sha.request.PatientResource;
 
 public interface PatientService {
@@ -39,14 +39,7 @@ public interface PatientService {
      */
     void delete(long id);
 
-    /**
-     * Method for adding new disease to patient
-     *
-     * @param diseaseName name of disease to add to Patient
-     * @param patientId   identifier of Patient
-     * @return Patient with new Disease
-     */
-    Patient addDisease(String diseaseName, Long patientId);
+    List<Patient> getAllPatientsOlderThan21AndEnlistedAfterDate();
 
-    List<Therapy> findPatientTherapies(long patientId);
+    List<Patient> getAllPatientsWithFeverOrCoughingSymptoms();
 }
