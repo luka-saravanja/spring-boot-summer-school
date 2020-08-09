@@ -75,14 +75,6 @@ public class Patient extends BaseEntity {
         this.gender = gender;
     }
 
-    public String getFirstName() {
-        return super.getFirstName();
-    }
-
-    public String getLastName() {
-        return super.getLastName();
-    }
-
     @PrePersist
     private void createdAt() {
         this.createdAt = LocalDateTime.now();

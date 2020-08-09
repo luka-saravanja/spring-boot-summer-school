@@ -16,7 +16,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     @Query(value = " SELECT DISTINCT p.* FROM PATIENT p" +
         " LEFT JOIN patient_medical_record as pmr ON p.patient_medical_record_id = pmr.patient_medical_record_id " +
-        " LEFT JOIN medical_record_symptoms as mrs ON pmr.patient_medical_record_id = mrs.patient_medical_record_id" +
+        " LEFT JOIN patient_medial_record_symptom as mrs ON pmr.patient_medical_record_id = mrs.patient_medical_record_id" +
         " LEFT JOIN symptom as s ON mrs.symptom_id = s.symptom_id" +
         " AND s.description ='Coughing' OR s.description = 'Fever' ", nativeQuery = true)
     List<Patient> findAllPatientsWithSymptoms();

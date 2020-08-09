@@ -14,9 +14,9 @@ INSERT INTO patient_medical_record(diagnosis, treatment) VALUES ('Diagnosis 1', 
 INSERT INTO patient_medical_record(diagnosis, treatment) VALUES ('Diagnosis 2', 'Medic 2');
 INSERT INTO patient_medical_record(diagnosis, treatment) VALUES ('Diagnosis 3', 'Medic 3');
 
-INSERT INTO medical_record_symptoms(patient_medical_record_id, symptom_id) VALUES (1,1);
-INSERT INTO medical_record_symptoms(patient_medical_record_id, symptom_id) VALUES (2,2);
-INSERT INTO medical_record_symptoms(patient_medical_record_id, symptom_id) VALUES (3,3);
+INSERT INTO patient_medial_record_symptom(patient_medical_record_id, symptom_id) VALUES (1,1);
+INSERT INTO patient_medial_record_symptom(patient_medical_record_id, symptom_id) VALUES (2,2);
+INSERT INTO patient_medial_record_symptom(patient_medical_record_id, symptom_id) VALUES (3,3);
 
 UPDATE patient SET patient_medical_record_id = 1 WHERE id= 1;
 UPDATE patient SET patient_medical_record_id = 2 WHERE id= 2;
