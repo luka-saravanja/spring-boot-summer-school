@@ -27,10 +27,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Patient extends BaseEntity {
