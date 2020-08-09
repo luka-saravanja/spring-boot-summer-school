@@ -18,7 +18,6 @@ import com.ag04smarts.sha.model.enums.DoctorExpertise;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity

@@ -27,6 +27,15 @@ public class PatientResource {
     @NotNull
     private Status status;
 
+    public PatientResource(@NotBlank String firstName, @NotBlank String lastName, @NotBlank @Email String email, String phone, Integer age, @NotNull Gender gender, @NotNull Status status) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.age = age;
+        this.gender = gender;
+        this.status = status;
+    }
 
     public Long getPatientId() {
         return patientId;
