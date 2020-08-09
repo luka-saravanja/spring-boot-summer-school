@@ -15,7 +15,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;
@@ -27,26 +26,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 
-@Builder(toBuilder = true)
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Table(name = "patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Patient {
+public class Patient extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long patientId;
-    @Column(nullable = false)
-    private String firstName;
-    @Column(nullable = false)
-    private String lastName;
+    private Long id;
     @Column(nullable = false, unique = true)
     private String email;
     private Integer age;
@@ -71,6 +62,16 @@ public class Patient {
     @JoinColumn(name = "patient_medical_record_id", referencedColumnName = "patientMedicalRecordId")
     private PatientMedicalRecord patientMedicalRecord;
 
+    @Builder
+    public Patient(String firstName, String lastName, String email, Integer age, String phoneNumber, Date enlistmentDate, Status status, Gender gender) {
+        super(firstName, lastName);
+        this.email = email;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.enlistmentDate = enlistmentDate;
+        this.status = status;
+        this.gender = gender;
+    }
 
     @PrePersist
     private void createdAt() {
@@ -83,8 +84,6 @@ public class Patient {
     }
 
     public void updateFromResource(PatientResource resource) {
-        this.firstName = resource.getFirstName();
-        this.lastName = resource.getLastName();
         this.email = resource.getEmail();
         this.age = resource.getAge();
         this.phoneNumber = resource.getPhone();

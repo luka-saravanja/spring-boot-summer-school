@@ -27,9 +27,9 @@ public class Appointment {
     private Date enlistmentDate;
 
     @ManyToOne
-    @JoinColumn(name = "patient_id", referencedColumnName = "patientId", nullable = false)
+    @JoinColumn(name = "patient_id", referencedColumnName = "id", nullable = false)
     private Patient patient;
     @ManyToOne
-    @JoinColumn(name = "doctor_id", referencedColumnName = "doctorId", nullable = false)
+    @JoinColumn(name = "doctor_id", referencedColumnName = "id", nullable = false)
     private Doctor doctor;
 }

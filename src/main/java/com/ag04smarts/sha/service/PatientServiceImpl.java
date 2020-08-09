@@ -50,7 +50,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public Patient update(PatientResource resource) {
         Patient persisted = findById(resource.getPatientId());
-        if (patientRepository.findByEmail(resource.getEmail()).filter(p -> !p.getPatientId().equals(resource.getPatientId())).isPresent()) {
+        if (patientRepository.findByEmail(resource.getEmail()).filter(p -> !p.getId().equals(resource.getPatientId())).isPresent()) {
             throw new IllegalArgumentException("Patient with same email already exists");
         }
         persisted.updateFromResource(resource);
