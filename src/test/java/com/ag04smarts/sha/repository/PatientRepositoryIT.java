@@ -21,8 +21,8 @@ class PatientRepositoryIT {
 
     @Test
     void findByEmail() {
-        Optional<Patient> patient = patientRepository.findByEmail("mario@email.com");
+        Optional<Patient> patient = patientRepository.findByEmail("luka@email.com");
 
-        assertEquals("mario@email.com", patient.get().getEmail());
+        assertEquals("luka@email.com", patient.get().getEmail());
     }
 }
