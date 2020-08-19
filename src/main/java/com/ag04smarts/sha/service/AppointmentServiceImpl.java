@@ -9,6 +9,7 @@ import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.repository.AppointmentRepository;
 import com.ag04smarts.sha.repository.DoctorRepository;
 import com.ag04smarts.sha.repository.PatientRepository;
+import com.ag04smarts.sha.request.AppointmentForm;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,18 +25,18 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment insert(long patientId, long doctorId, Date date) {
-        Patient patient = patientRepository.findById(patientId)
+    public Appointment insert(AppointmentForm form) {
+        Patient patient = patientRepository.findById(form.getPatientId())
             .orElseThrow(EntityNotFoundException::new);
-        Doctor doctor = doctorRepository.findById(doctorId)
+        Doctor doctor = doctorRepository.findById(form.getDoctorId())
             .orElseThrow(EntityNotFoundException::new);
 
-        if (appointmentRepository.findByPatientAndDoctorAndEnlistmentDate(patient, doctor, date).isPresent()) {
+        if (appointmentRepository.findByPatientAndDoctorAndEnlistmentDate(patient, doctor, form.getDate()).isPresent()) {
             throw new IllegalArgumentException("This doctor and patient have appointment on selected date");
         }
 
         Appointment appointment = new Appointment();
-        appointment.setEnlistmentDate(date);
+        appointment.setEnlistmentDate(form.getDate());
         appointment.setPatient(patient);
         appointment.setDoctor(doctor);
 

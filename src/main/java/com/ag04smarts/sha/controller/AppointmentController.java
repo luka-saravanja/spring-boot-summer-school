@@ -1,17 +1,18 @@
 package com.ag04smarts.sha.controller;
 
 
-import java.util.Date;
+import javax.validation.Valid;
+
 
 import com.ag04smarts.sha.model.Appointment;
+import com.ag04smarts.sha.request.AppointmentForm;
 import com.ag04smarts.sha.service.AppointmentService;
 import com.ag04smarts.sha.utils.MappingConstants;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -26,11 +27,9 @@ public class AppointmentController {
 
     @PostMapping
     public HttpEntity<?> createAppointment(
-        @RequestParam(name = "patientId") long patientId,
-        @RequestParam(name = "doctorId") long doctorId,
-        @RequestParam(name = "date") @DateTimeFormat(pattern = "dd.MM.yyyy") Date date
+        @Valid @RequestBody AppointmentForm form
     ) {
-        Appointment created = appointmentService.insert(patientId, doctorId, date);
+        Appointment created = appointmentService.insert(form);
         return ResponseEntity.ok(created);
     }
 }
