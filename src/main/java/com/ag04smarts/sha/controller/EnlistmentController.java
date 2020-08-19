@@ -28,7 +28,7 @@ public class EnlistmentController {
 
     @PostMapping
     public HttpEntity<?> createPatient(
-        @RequestBody @Valid EnlistmentForm form
+        @Valid @RequestBody EnlistmentForm form
     ) {
         Patient created = patientService.insert(converter.convert(form));
         return ResponseEntity.ok(created);
