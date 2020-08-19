@@ -19,7 +19,7 @@ public interface PatientService {
     /**
      * Creates a new {@link Patient} based on the given the data
      *
-     * @param resource data to insert
+     * @param patient data to insert
      * @return an persisted {@link Patient}
      */
     Patient insert(Patient patient);

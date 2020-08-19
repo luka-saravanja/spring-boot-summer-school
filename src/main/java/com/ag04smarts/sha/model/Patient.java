@@ -55,6 +55,7 @@ public class Patient extends BaseEntity {
     private LocalDateTime lastUpdated;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    @JsonIgnore
     private Set<Appointment> appointments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     @JsonIgnore

@@ -4,4 +4,5 @@ public final class MappingConstants {
     public static final String API = "/api";
     public static final String PATIENT = API + "/patient";
     public static final String ENLISTMENT = API + "/enlistment";
+    public static final String APPOINTMENT = API + "/appointment";
 }
