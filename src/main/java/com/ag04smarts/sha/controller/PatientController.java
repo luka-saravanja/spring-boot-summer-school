@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.service.PatientService;
-import com.ag04smarts.sha.request.PatientResource;
+import com.ag04smarts.sha.request.EnlistmentForm;
 
 
 import org.springframework.http.HttpEntity;
@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import com.ag04smarts.sha.utils.MappingConstants;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = MappingConstants.PATIENT)
@@ -40,18 +43,10 @@ public class PatientController {
         return ResponseEntity.ok(patient);
     }
 
-    @PostMapping
-    public HttpEntity<?> createPatient(
-        @RequestBody @Valid PatientResource resource
-    ) {
-        Patient created = patientService.insert(resource);
-        return ResponseEntity.ok(created);
-    }
-
     @PutMapping("/{id}")
     public HttpEntity<?> updatePatient(
         @PathVariable("id") long id,
-        @RequestBody @Valid PatientResource resource
+        @RequestBody @Valid EnlistmentForm resource
     ) {
         resource.setPatientId(id);
         Patient updated = patientService.update(resource);
@@ -78,6 +73,14 @@ public class PatientController {
     ) {
         List<Patient> patients = patientService.getAllPatientsWithFeverOrCoughingSymptoms();
         return ResponseEntity.ok(patients);
+    }
+
+    @PutMapping("/{patientId}/add-picture")
+    public void addPatientPicture(
+        @PathVariable("patientId") long patientId,
+        @RequestPart("picture") MultipartFile file
+    ) {
+        patientService.addPatientPicture(patientId, file);
     }
 
 }

@@ -5,6 +5,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+
 import com.ag04smarts.sha.model.enums.Gender;
 import com.ag04smarts.sha.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,16 +14,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PatientResource {
+public class EnlistmentForm {
 
     @JsonIgnore
     private Long patientId;
-    @NotBlank
+    @NotBlank(message = "{name.not.blank}")
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "{lastname.not.blank}")
     private String lastName;
     @NotBlank
-    @Email
+    @Email(message = "{email.wrong}")
     private String email;
     private String phone;
     private Integer age;
@@ -31,14 +32,5 @@ public class PatientResource {
     @NotNull
     private Status status;
 
-    public PatientResource(@NotBlank String firstName, @NotBlank String lastName, @NotBlank @Email String email, String phone, Integer age, @NotNull Gender gender, @NotNull Status status) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.age = age;
-        this.gender = gender;
-        this.status = status;
-    }
 
 }

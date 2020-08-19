@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import java.util.Set;
 
 import com.ag04smarts.sha.model.enums.DoctorExpertise;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
@@ -36,8 +37,10 @@ public class Doctor extends BaseEntity {
     private DoctorExpertise doctorExpertise;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
+    @JsonIgnore
     private Set<Appointment> appointments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
+    @JsonIgnore
     private Set<PatientTreatmentHistory> patientTreatmentHistories;
 
     @Builder

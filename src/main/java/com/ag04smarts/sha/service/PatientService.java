@@ -4,7 +4,8 @@ package com.ag04smarts.sha.service;
 import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
-import com.ag04smarts.sha.request.PatientResource;
+import com.ag04smarts.sha.request.EnlistmentForm;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface PatientService {
 
@@ -19,10 +20,10 @@ public interface PatientService {
     /**
      * Creates a new {@link Patient} based on the given the data
      *
-     * @param resource data to insert
+     * @param patient data to insert
      * @return an persisted {@link Patient}
      */
-    Patient insert(PatientResource resource);
+    Patient insert(Patient patient);
 
     /**
      * Updates an existing {@link Patient} based on the given the data
@@ -30,7 +31,7 @@ public interface PatientService {
      * @param resource data to update
      * @return an updated {@link Patient}
      */
-    Patient update(PatientResource resource);
+    Patient update(EnlistmentForm resource);
 
     /**
      * Deletes a {@link Patient} based on the given {@code id}
@@ -42,4 +43,12 @@ public interface PatientService {
     List<Patient> getAllPatientsOlderThan21AndEnlistedAfterDate();
 
     List<Patient> getAllPatientsWithFeverOrCoughingSymptoms();
+
+    /**
+     * Upload patient picture
+     *
+     * @param patientId identifier of patient
+     * @param image     picture to add
+     */
+    void addPatientPicture(long patientId, MultipartFile image);
 }

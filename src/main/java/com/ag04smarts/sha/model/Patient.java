@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -21,12 +22,11 @@ import java.util.Set;
 
 import com.ag04smarts.sha.model.enums.Gender;
 import com.ag04smarts.sha.model.enums.Status;
-import com.ag04smarts.sha.request.PatientResource;
+import com.ag04smarts.sha.request.EnlistmentForm;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
@@ -51,11 +51,14 @@ public class Patient extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status;
+    @Lob
+    private Byte[] picture;
 
     private LocalDateTime createdAt;
     private LocalDateTime lastUpdated;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+    @JsonIgnore
     private Set<Appointment> appointments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     @JsonIgnore
@@ -85,7 +88,7 @@ public class Patient extends BaseEntity {
         this.lastUpdated = LocalDateTime.now();
     }
 
-    public void updateFromResource(PatientResource resource) {
+    public void updateFromResource(EnlistmentForm resource) {
         this.email = resource.getEmail();
         this.age = resource.getAge();
         this.phoneNumber = resource.getPhone();
