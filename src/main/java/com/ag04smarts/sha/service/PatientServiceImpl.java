@@ -5,6 +5,7 @@ import javax.persistence.EntityNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import com.ag04smarts.sha.config.exceptions.NotFoundException;
 import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.repository.PatientRepository;
 import com.ag04smarts.sha.request.EnlistmentForm;
@@ -26,7 +27,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient findById(long id) {
-        return patientRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return patientRepository.findById(id).orElseThrow(() -> new NotFoundException("Entity with id :" + id + " not found"));
     }
 
     @Override
