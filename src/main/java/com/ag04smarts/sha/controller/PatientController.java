@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.service.PatientService;
-import com.ag04smarts.sha.request.PatientResource;
+import com.ag04smarts.sha.request.EnlistmentForm;
 
 
 import org.springframework.http.HttpEntity;
@@ -40,18 +40,10 @@ public class PatientController {
         return ResponseEntity.ok(patient);
     }
 
-    @PostMapping
-    public HttpEntity<?> createPatient(
-        @RequestBody @Valid PatientResource resource
-    ) {
-        Patient created = patientService.insert(resource);
-        return ResponseEntity.ok(created);
-    }
-
     @PutMapping("/{id}")
     public HttpEntity<?> updatePatient(
         @PathVariable("id") long id,
-        @RequestBody @Valid PatientResource resource
+        @RequestBody @Valid EnlistmentForm resource
     ) {
         resource.setPatientId(id);
         Patient updated = patientService.update(resource);

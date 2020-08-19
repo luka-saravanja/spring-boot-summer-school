@@ -21,12 +21,11 @@ import java.util.Set;
 
 import com.ag04smarts.sha.model.enums.Gender;
 import com.ag04smarts.sha.model.enums.Status;
-import com.ag04smarts.sha.request.PatientResource;
+import com.ag04smarts.sha.request.EnlistmentForm;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
@@ -85,7 +84,7 @@ public class Patient extends BaseEntity {
         this.lastUpdated = LocalDateTime.now();
     }
 
-    public void updateFromResource(PatientResource resource) {
+    public void updateFromResource(EnlistmentForm resource) {
         this.email = resource.getEmail();
         this.age = resource.getAge();
         this.phoneNumber = resource.getPhone();

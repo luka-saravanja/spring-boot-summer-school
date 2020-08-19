@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.repository.PatientRepository;
-import com.ag04smarts.sha.request.PatientResource;
+import com.ag04smarts.sha.request.EnlistmentForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -27,28 +27,18 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient insert(PatientResource resource) {
+    public Patient insert(Patient patient) {
         log.info("Building new patient");
 
-        if (patientRepository.findByEmail(resource.getEmail()).isPresent()) {
+        if (patientRepository.findByEmail(patient.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Patient with same email already exists");
         }
-
-        Patient patient = Patient.builder()
-            .firstName(resource.getFirstName())
-            .lastName(resource.getLastName())
-            .email(resource.getEmail())
-            .phoneNumber(resource.getPhone())
-            .age(resource.getAge())
-            .status(resource.getStatus())
-            .gender(resource.getGender())
-            .build();
 
         return patientRepository.save(patient);
     }
 
     @Override
-    public Patient update(PatientResource resource) {
+    public Patient update(EnlistmentForm resource) {
         Patient persisted = findById(resource.getPatientId());
         if (patientRepository.findByEmail(resource.getEmail()).filter(p -> !p.getId().equals(resource.getPatientId())).isPresent()) {
             throw new IllegalArgumentException("Patient with same email already exists");

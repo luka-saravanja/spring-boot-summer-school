@@ -4,7 +4,7 @@ package com.ag04smarts.sha.service;
 import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
-import com.ag04smarts.sha.request.PatientResource;
+import com.ag04smarts.sha.request.EnlistmentForm;
 
 public interface PatientService {
 
@@ -22,7 +22,7 @@ public interface PatientService {
      * @param resource data to insert
      * @return an persisted {@link Patient}
      */
-    Patient insert(PatientResource resource);
+    Patient insert(Patient patient);
 
     /**
      * Updates an existing {@link Patient} based on the given the data
@@ -30,7 +30,7 @@ public interface PatientService {
      * @param resource data to update
      * @return an updated {@link Patient}
      */
-    Patient update(PatientResource resource);
+    Patient update(EnlistmentForm resource);
 
     /**
      * Deletes a {@link Patient} based on the given {@code id}
