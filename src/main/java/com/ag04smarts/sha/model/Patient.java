@@ -52,7 +52,6 @@ public class Patient extends BaseEntity {
     @Column(nullable = false)
     private Status status;
     @Lob
-    @JsonIgnore
     private Byte[] picture;
 
     private LocalDateTime createdAt;
