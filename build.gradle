@@ -36,6 +36,7 @@ dependencies {
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
     runtime('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.0'
 
 }
 
