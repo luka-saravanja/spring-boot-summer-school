@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
 import com.ag04smarts.sha.request.EnlistmentForm;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface PatientService {
 
@@ -42,4 +43,12 @@ public interface PatientService {
     List<Patient> getAllPatientsOlderThan21AndEnlistedAfterDate();
 
     List<Patient> getAllPatientsWithFeverOrCoughingSymptoms();
+
+    /**
+     * Upload patient picture
+     *
+     * @param patientId identifier of patient
+     * @param image     picture to add
+     */
+    void addPatientPicture(long patientId, MultipartFile image);
 }

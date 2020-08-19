@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import com.ag04smarts.sha.utils.MappingConstants;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = MappingConstants.PATIENT)
@@ -70,6 +73,14 @@ public class PatientController {
     ) {
         List<Patient> patients = patientService.getAllPatientsWithFeverOrCoughingSymptoms();
         return ResponseEntity.ok(patients);
+    }
+
+    @PutMapping("/{patientId}/add-picture")
+    public void addPatientPicture(
+        @PathVariable("patientId") long patientId,
+        @RequestPart("picture") MultipartFile file
+    ) {
+        patientService.addPatientPicture(patientId, file);
     }
 
 }

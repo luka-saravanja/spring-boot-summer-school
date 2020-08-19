@@ -2,6 +2,7 @@ package com.ag04smarts.sha.service;
 
 import javax.persistence.EntityNotFoundException;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.ag04smarts.sha.model.Patient;
@@ -9,6 +10,8 @@ import com.ag04smarts.sha.repository.PatientRepository;
 import com.ag04smarts.sha.request.EnlistmentForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @Service
@@ -63,6 +66,28 @@ public class PatientServiceImpl implements PatientService {
     public List<Patient> getAllPatientsWithFeverOrCoughingSymptoms() {
         log.info("Getting all patients with Fever or Coughing");
         return patientRepository.findAllPatientsWithSymptoms();
+    }
+
+    @Override
+    @Transactional
+    public void addPatientPicture(long patientId, MultipartFile image) {
+        Patient patient = findById(patientId);
+        try {
+            Byte[] bytes = new Byte[image.getBytes().length];
+
+            int i = 0;
+
+            for (byte b : image.getBytes()) {
+                bytes[i++] = b;
+            }
+
+            patient.setPicture(bytes);
+
+            patientRepository.save(patient);
+        } catch (IOException e) {
+            log.info("error in picture upload");
+            e.printStackTrace();
+        }
     }
 
 }
