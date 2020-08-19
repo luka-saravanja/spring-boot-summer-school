@@ -27,7 +27,7 @@ public class AppointmentController {
 
     @PostMapping
     public HttpEntity<?> createAppointment(
-        @Valid @RequestBody AppointmentForm form
+        @RequestBody @Valid AppointmentForm form
     ) {
         Appointment created = appointmentService.insert(form);
         return ResponseEntity.ok(created);

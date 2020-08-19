@@ -20,10 +20,10 @@ public class EnlistmentForm {
     private Long patientId;
     @NotBlank(message = "{name.not.blank}")
     private String firstName;
-    @NotBlank
+    @NotBlank(message = "{lastname.not.blank}")
     private String lastName;
     @NotBlank
-    @Email
+    @Email(message = "{email.wrong}")
     private String email;
     private String phone;
     private Integer age;
